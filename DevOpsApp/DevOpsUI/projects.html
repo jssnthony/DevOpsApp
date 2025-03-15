@@ -75,12 +75,12 @@
         };
       },
       mounted() {
-        axios.get('https://jsonplaceholder.typicode.com/posts?_limit=5')
+        axios.get('https://localhost:7101/Project')
           .then(response => {
             this.projects = response.data.map(post => ({
-              name: post.title,
-              description: post.body,
-              repo: `https://github.com/usuario/${post.id}`
+              name: post.name,
+              description: post.description,
+              repo: post.repository
             }));
           })
           .catch(error => console.error('Error al obtener los datos:', error));
