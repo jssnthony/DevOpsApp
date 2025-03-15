@@ -1,3 +1,7 @@
+using DevOpsGateway.Extensions;
+using DevOpsGateway.SDKs;
+using Refit;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -17,6 +21,9 @@ builder.Services.AddCors(options =>
                   .AllowAnyHeader();
         });
 });
+
+// Registrar los servicios personalizados
+builder.Services.AddCustomServices(builder.Configuration);
 
 var app = builder.Build();
 

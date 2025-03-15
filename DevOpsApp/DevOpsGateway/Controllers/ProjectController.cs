@@ -1,3 +1,4 @@
+using DevOpsGateway.SDKs;
 using Microsoft.AspNetCore.Mvc;
 using Models.Projects;
 
@@ -7,17 +8,25 @@ namespace DevOpsGateway.Controllers
     [Route("[controller]")]
     public class ProjectController : ControllerBase
     {
-        [HttpGet(Name = "GetProject")]
-        public IEnumerable<ProjectsResultDto> Get()
+        private readonly IProjectApi _projectApi;
+
+        public ProjectController(IProjectApi projectApi)
         {
-            return Enumerable.Range(1, 5).Select(index => new ProjectsResultDto
+            _projectApi = projectApi;
+        }
+
+        [HttpGet(Name = "GetProjects")]
+        public async Task<IActionResult> Get()
+        {
+            try
             {
-                Description = $"{index}",
-                Id = new Guid(),
-                Name = "test",
-                Repository = "test repository"
-            })
-            .ToArray();
+                var projects = await _projectApi.GetProjects();
+                return Ok(projects);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error al obtener proyectos: {ex.Message}");
+            }
         }
     }
 }
