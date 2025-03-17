@@ -1,3 +1,4 @@
+using DevOpsAppManager.Projects;
 using Microsoft.AspNetCore.Mvc;
 using Models.Projects;
 
@@ -8,23 +9,18 @@ namespace DevOpsController.Controllers
     public class ProjectController : ControllerBase
     {
         private readonly ILogger<ProjectController> _logger;
+        private readonly IProjectsManager _manager;
 
-        public ProjectController(ILogger<ProjectController> logger)
+        public ProjectController(ILogger<ProjectController> logger, IProjectsManager projectsManager)
         {
             _logger = logger;
+            _manager = projectsManager;
         }
 
         [HttpGet(Name = "GetProjects")]
-        public IEnumerable<ProjectsResultDto> Get()
+        public async Task<IEnumerable<ProjectsResultDto>> Get()
         {
-            return Enumerable.Range(1, 5).Select(index => new ProjectsResultDto
-            {
-                Description = $"{index}",
-                Id = new Guid(),
-                Name = "test",
-                Repository = "test repository"
-            })
-            .ToArray();
+            return await _manager.GetProjectsAsync();
         }
     }
 }
