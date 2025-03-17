@@ -398,3 +398,4 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+/DevOpsApp/DevOpsController/appsettings.Development.json
