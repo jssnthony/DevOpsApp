@@ -31,6 +31,7 @@
   <ItemGroup>
     <Content Include="app.js" />
     <Content Include="routes\index.js" />
+    <Content Include="routes\projects.js" />
     <Content Include="routes\users.js" />
     <Content Include="package.json" />
     <Content Include="public\stylesheets\main.css" />
@@ -38,6 +39,7 @@
     <Content Include="views\index.pug" />
     <Content Include="views\layout.pug" />
     <Content Include="views\error.pug" />
+    <Content Include="views\projects.pug" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="public\" />
