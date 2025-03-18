@@ -9,9 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevOpsController", "DevOpsC
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models", "Models\Models.csproj", "{5C9CD842-5C0C-4541-957D-3A870FB5CE59}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevOpsAppManager", "DevOpsAppManager\DevOpsAppManager.csproj", "{681215B5-6DF9-4889-BFCA-6250A04E281B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevOpsAppManager", "DevOpsAppManager\DevOpsAppManager.csproj", "{681215B5-6DF9-4889-BFCA-6250A04E281B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevOpsAppData", "DevOpsAppData\DevOpsAppData.csproj", "{0136F6EF-F584-4E21-AD87-DD9A2EF33E91}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevOpsAppData", "DevOpsAppData\DevOpsAppData.csproj", "{0136F6EF-F584-4E21-AD87-DD9A2EF33E91}"
+EndProject
+Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "DevOpsAppUI", "DevOpsAppUI\DevOpsAppUI.njsproj", "{4058AC0D-F6C9-48A8-B3AE-FAFDC5AA3708}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{0136F6EF-F584-4E21-AD87-DD9A2EF33E91}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0136F6EF-F584-4E21-AD87-DD9A2EF33E91}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0136F6EF-F584-4E21-AD87-DD9A2EF33E91}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4058AC0D-F6C9-48A8-B3AE-FAFDC5AA3708}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4058AC0D-F6C9-48A8-B3AE-FAFDC5AA3708}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4058AC0D-F6C9-48A8-B3AE-FAFDC5AA3708}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4058AC0D-F6C9-48A8-B3AE-FAFDC5AA3708}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
