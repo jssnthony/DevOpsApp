@@ -12,6 +12,17 @@ builder.Services.AddCustomServices(builder.Configuration);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAllOrigins",
+        policy =>
+        {
+            policy.AllowAnyOrigin()
+                  .AllowAnyMethod()
+                  .AllowAnyHeader();
+        });
+});
+
 var connectionString = builder.Configuration.GetConnectionString("MySqlConnection");
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
