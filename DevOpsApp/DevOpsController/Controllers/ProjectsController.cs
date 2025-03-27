@@ -26,8 +26,7 @@ namespace DevOpsController.Controllers
         [HttpPost]
         public async Task<IActionResult> Insert(ProjectDtoToInsert toInsert)
         {
-            await _manager.InsertAsync(toInsert);
-            return Ok();
+            return Ok(await _manager.InsertAsync(toInsert));
         }
     }
 }

@@ -8,12 +8,16 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var cors = require('cors');
 
+var config = require('./config.json'); // Importar configuración
+
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var projects = require('./routes/projects');
+var projectsInsert = require('./routes/projectsInsert');
 
 
 var app = express();
+app.locals.config = config; // Hacerlo disponible globalmente
 app.use(cors());
 
 // view engine setup
@@ -31,6 +35,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/users', users);
 app.use('/projects', projects);
+app.use('/projectsInsert', projectsInsert);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

@@ -27,9 +27,9 @@ namespace DevOpsAppManager.Projects
             return _mapper.Map<IEnumerable<ProjectsResultDto>>(records);
         }
 
-        public async Task InsertAsync(ProjectDtoToInsert toInsert)
+        public async Task<Guid> InsertAsync(ProjectDtoToInsert toInsert)
         {
-            await _projectRepository.Insert(toInsert);
+            return await _projectRepository.Insert(toInsert);
         }
     }
 }

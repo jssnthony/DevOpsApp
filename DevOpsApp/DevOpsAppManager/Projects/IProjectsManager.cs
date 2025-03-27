@@ -11,6 +11,6 @@ namespace DevOpsAppManager.Projects
     {
         public Task<IEnumerable<ProjectsResultDto>> GetAsync();
 
-        public Task InsertAsync(ProjectDtoToInsert toInsert);
+        public Task<Guid> InsertAsync(ProjectDtoToInsert toInsert);
     }
 }

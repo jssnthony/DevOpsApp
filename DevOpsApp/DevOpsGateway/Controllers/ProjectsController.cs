@@ -34,8 +34,7 @@ namespace DevOpsGateway.Controllers
         {
             try
             {
-                await _projectApi.InsertProjects(projectDtoToInsert);
-                return Ok();
+                return Ok(await _projectApi.InsertProjects(projectDtoToInsert));
             }
             catch (Exception ex)
             {

@@ -2,9 +2,15 @@
 var express = require('express');
 var router = express.Router();
 
+process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0'; // Deshabilitar validación SSL
+
 router.get('/', async function (req, res) {
     try {
-        const response = await fetch('http://192.168.1.36:5001/Project', {
+        const API_URL_PROJECTS = req.app.locals.config.API_URL_PROJECTS; // Obtener la URL desde app.js
+        console.log("API URL");
+
+        console.log(API_URL_PROJECTS);
+        const response = await fetch(`${API_URL_PROJECTS}` , {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
@@ -16,6 +22,7 @@ router.get('/', async function (req, res) {
         }
 
         const data = await response.json();
+        console.log(data);
         res.render('projects', { title: 'Projects', projects: data });
     } catch (error) {
         console.error('Error al obtener proyectos:', error);

@@ -9,6 +9,6 @@ namespace DevOpsGateway.SDKs
         Task<string> GetProjects();
 
         [Post("/Projects")]
-        Task InsertProjects(ProjectDtoToInsert projectDtoToInsert);
+        Task<Guid> InsertProjects(ProjectDtoToInsert projectDtoToInsert);
     }
 }
