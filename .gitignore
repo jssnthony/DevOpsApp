@@ -3,6 +3,8 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/main/VisualStudio.gitignore
 
+*.DS_Store
+
 # User-specific files
 *.rsuser
 *.suo
@@ -396,3 +398,6 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+/DevOpsApp/DevOpsController/appsettings.Development.json
+/DevOpsApp/DevOpsGateway/appsettings.Release.json
+/DevOpsApp/DevOpsGateway/appsettings.Development.json
