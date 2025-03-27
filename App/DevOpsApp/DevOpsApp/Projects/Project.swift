@@ -1,0 +1,15 @@
+//
+//  Project.swift
+//  DevOpsApp
+//
+//  Created by Jesus Juarez on 27/03/25.
+//
+
+import Foundation
+
+struct Project: Codable, Identifiable {
+    let id: String
+    let name: String
+    let description: String
+    let repository: String
+}
