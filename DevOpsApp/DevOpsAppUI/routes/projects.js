@@ -4,7 +4,7 @@ var router = express.Router();
 
 router.get('/', async function (req, res) {
     try {
-        const response = await fetch('https://localhost:7101/Project', {
+        const response = await fetch('https://192.168.1.36:5001/Project', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
