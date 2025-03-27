@@ -28,5 +28,18 @@ namespace DevOpsAppData.ProjectsRepository
                 Repository = x.Repository
             }).ToListAsync();
         }
+
+        public async Task Insert(ProjectDtoToInsert toInsert)
+        {
+            await _context.Projects.AddAsync(new Projects()
+            {
+                Description = toInsert.Description,
+                Id = Guid.NewGuid(),
+                Name = toInsert.Name,
+                Repository = toInsert.Repository
+            });
+
+            await _context.SaveChangesAsync();
+        }
     }
 }
