@@ -6,16 +6,16 @@ namespace DevOpsGateway.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class ProjectController : ControllerBase
+    public class ProjectsController : ControllerBase
     {
         private readonly IProjectApi _projectApi;
 
-        public ProjectController(IProjectApi projectApi)
+        public ProjectsController(IProjectApi projectApi)
         {
             _projectApi = projectApi;
         }
 
-        [HttpGet(Name = "GetProjects")]
+        [HttpGet]
         public async Task<IActionResult> Get()
         {
             try
@@ -26,6 +26,19 @@ namespace DevOpsGateway.Controllers
             catch (Exception ex)
             {
                 return StatusCode(500, $"Error al obtener proyectos: {ex.Message}");
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Insert(ProjectDtoToInsert projectDtoToInsert)
+        {
+            try
+            {
+                return Ok(await _projectApi.InsertProjects(projectDtoToInsert));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error al insertar proyectos: {ex.Message}");
             }
         }
     }

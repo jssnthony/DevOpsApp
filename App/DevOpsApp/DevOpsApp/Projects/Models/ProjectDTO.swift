@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Project: Codable, Identifiable {
+struct ProjectDTO: Codable, Identifiable {
     let id: String
     let name: String
     let description: String

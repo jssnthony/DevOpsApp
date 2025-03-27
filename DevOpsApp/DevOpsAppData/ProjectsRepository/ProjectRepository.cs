@@ -23,10 +23,25 @@ namespace DevOpsAppData.ProjectsRepository
         {
             return await _context.Projects.Select(x=> new ProjectDto { 
                 Name = x.Name,
-                Description = x.Description,
+                Description = string.IsNullOrEmpty(x.Description)? "": x.Description,
                 Id = x.Id,
-                Repository = x.Repository
+                Repository = string.IsNullOrEmpty(x.Repository) ? "" : x.Repository
             }).ToListAsync();
+        }
+
+        public async Task<Guid> Insert(ProjectDtoToInsert toInsert)
+        {
+            var id = Guid.NewGuid();
+            await _context.Projects.AddAsync(new Projects()
+            {
+                Description = toInsert.Description,
+                Id = id,
+                Name = toInsert.Name,
+                Repository = toInsert.Repository
+            });
+
+            await _context.SaveChangesAsync();
+            return id;
         }
     }
 }

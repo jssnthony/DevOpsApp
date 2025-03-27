@@ -1,10 +1,14 @@
-﻿using Refit;
+﻿using Models.Projects;
+using Refit;
 
 namespace DevOpsGateway.SDKs
 {
     public interface IProjectApi
     {
-        [Get("/Project")]
+        [Get("/Projects")]
         Task<string> GetProjects();
+
+        [Post("/Projects")]
+        Task<Guid> InsertProjects(ProjectDtoToInsert projectDtoToInsert);
     }
 }

@@ -3,3 +3,20 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
+
+  a(href="/projectsInsert") Agregar Nuevo Proyecto
+
+  table
+    thead
+      tr
+        th ID
+        th Nombre
+        th Descripción
+        th Repositorio
+    tbody
+      each project in projects
+        tr
+          td= project.id
+          td= project.name
+          td= project.description
+          td= project.repository

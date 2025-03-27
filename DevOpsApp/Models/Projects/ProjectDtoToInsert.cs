@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace Models.Projects
 {
-    public class ProjectDto
+    public class ProjectDtoToInsert
     {
-        public Guid Id { get; set; }
         public required string Name { get; set; }
-        public required string Description { get; set; }
-        public required string Repository { get; set; }
+        public string? Description { get; set; }
+        public string? Repository { get; set; }
     }
 }

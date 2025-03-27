@@ -23,7 +23,7 @@ namespace DevOpsAppData.Entities
         [Required]
         [Column("PROJECT_TITLE")]
         [StringLength(255)]
-        public string Name { get; set; }
+        public required string Name { get; set; }
 
         [Column("PROJECT_DESCRIPTION", TypeName = "TEXT")]
         public string? Description { get; set; }

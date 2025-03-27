@@ -11,5 +11,6 @@ namespace DevOpsAppData.ProjectsRepository
     public interface IProjectRepository
     {
         public Task<IEnumerable<ProjectDto>> GetAll();
+        public Task<Guid> Insert(ProjectDtoToInsert toInsert);
     }
 }
