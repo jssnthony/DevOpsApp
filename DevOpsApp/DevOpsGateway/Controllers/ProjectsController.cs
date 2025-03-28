@@ -15,30 +15,93 @@ namespace DevOpsGateway.Controllers
             _projectApi = projectApi;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> Get()
+        [HttpGet(Name = "GetAll")]
+        public async Task<IActionResult> GetAll()
+        {
+            try {
+                return Ok(await _projectApi.GetAllProjectsAsync());
+            }
+            catch (Exception ex) {
+                return StatusCode(500, $"Error retreiving all projects: {ex.Message}");
+            }
+
+        }
+
+        [HttpGet("{id}", Name = "Get")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<IActionResult> Get(Guid id)
         {
             try
             {
-                var projects = await _projectApi.GetProjects();
-                return Ok(projects);
+                return Ok(await _projectApi.GetProjectAsync(id));
             }
             catch (Exception ex)
             {
-                return StatusCode(500, $"Error al obtener proyectos: {ex.Message}");
+                return StatusCode(500, $"Error retreiving project: {ex.Message}");
             }
+            
         }
 
         [HttpPost]
-        public async Task<IActionResult> Insert(ProjectDtoToInsert projectDtoToInsert)
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<IActionResult> Insert([FromBody] ProjectDtoToInsert toInsert)
         {
             try
             {
-                return Ok(await _projectApi.InsertProjects(projectDtoToInsert));
+                return Ok(await _projectApi.InsertProjectsAsync(toInsert));
             }
             catch (Exception ex)
             {
-                return StatusCode(500, $"Error al insertar proyectos: {ex.Message}");
+                return StatusCode(500, $"Error inserting new project: {ex.Message}");
+            }
+            
+        }
+
+        [HttpPut("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> Update(Guid id, [FromBody] ProjectDtoToUpdate toUpdate)
+        {
+            try
+            {
+                if (id != toUpdate.Id)
+                    return NotFound("Id does not match");
+                return Ok(await _projectApi.UpdateProjectsAsync(id, toUpdate));
+                
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error updating new project: {ex.Message}");
+            }
+        }
+
+        [HttpDelete("Archive/{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<IActionResult> Archive(Guid id)
+        {
+            try
+            {
+                await _projectApi.ArchiveProjectAsync(id);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error archinving new project: {ex.Message}");
+            } 
+        }
+
+        [HttpDelete("Delete/{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<IActionResult> Disable(Guid id)
+        {
+            try
+            {
+                await _projectApi.DesactivateProjectAsync(id);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error archinving new project: {ex.Message}");
             }
         }
     }

@@ -18,12 +18,12 @@ namespace DevOpsAppManager.Projects
 
         public async Task<bool> ArchiveRecordAsync(Guid id)
         {
-            return await _projectRepository.ArchiveRecordAsync(id) == null;
+            return await _projectRepository.ArchiveRecordAsync(id) != null;
         }
 
         public async Task<bool> DisableRecordAsync(Guid id)
         {
-            return await _projectRepository.DisableRecordAsync(id) == null;
+            return await _projectRepository.DisableRecordAsync(id) != null;
         }
 
         public async Task<IEnumerable<ProjectsResultDto>> GetAsync()
