@@ -9,9 +9,10 @@ namespace DevOpsController.Services
         public static void AddCustomServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddAutoMapper(typeof(ProjectsManagerProfile));
+            services.AddAutoMapper(typeof(ProjectsRepositoryProfile));
 
             services.AddScoped<IProjectsManager, ProjectsManager>();
-            services.AddScoped<IProjectRepository, ProjectRepository>();
+            services.AddScoped<IProjectsRepository, ProjectsRepository>();
         }
     }
 }
