@@ -1,10 +1,4 @@
-﻿using DevOpsAppData.Entities;
-using Models.Projects;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Models.Projects;
 
 namespace DevOpsAppData.ProjectsRepository
 {

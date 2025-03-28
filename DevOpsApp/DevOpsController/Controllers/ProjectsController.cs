@@ -1,7 +1,6 @@
 using DevOpsAppManager.Projects;
 using Microsoft.AspNetCore.Mvc;
 using Models.Projects;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace DevOpsController.Controllers
 {
@@ -48,15 +47,17 @@ namespace DevOpsController.Controllers
             return NotFound(id);
         }
 
-        //[HttpPut]
-        //public async Task<IActionResult> Archive(Guid id)
-        //{
-        //    if (await _manager.ArchiveRecordAsync(id))
-        //        return Ok();
-        //    return NotFound(id);
-        //}
+        [HttpDelete("Archive/{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> Archive(Guid id)
+        {
+            if (await _manager.ArchiveRecordAsync(id))
+                return Ok();
+            return NotFound(id);
+        }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("Delete/{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> Disable(Guid id)
