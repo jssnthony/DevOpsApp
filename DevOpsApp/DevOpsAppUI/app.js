@@ -15,6 +15,8 @@ var users = require('./routes/users');
 var projects = require('./routes/projects');
 var projectsInsert = require('./routes/projectsInsert');
 var projectsUpdate = require('./routes/projectsUpdate');
+var projectsArchive = require('./routes/projectsArchive');
+var projectsDisable = require('./routes/projectsDisable');
 
 
 var app = express();
@@ -38,6 +40,8 @@ app.use('/users', users);
 app.use('/projects', projects);
 app.use('/projectsInsert', projectsInsert);
 app.use('/projectsUpdate', projectsUpdate);
+app.use('/projectsArchive', projectsArchive);
+app.use('/projectsDisable', projectsDisable);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

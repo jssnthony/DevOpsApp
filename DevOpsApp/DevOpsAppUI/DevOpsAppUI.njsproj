@@ -33,7 +33,9 @@
     <Content Include="config.json" />
     <Content Include="public\icons\indexicon.png" />
     <Content Include="routes\index.js" />
+    <Content Include="routes\projectsDisable.js" />
     <Content Include="routes\projects.js" />
+    <Content Include="routes\projectsArchive.js" />
     <Content Include="routes\projectsInsert.js" />
     <Content Include="routes\projectsUpdate.js" />
     <Content Include="routes\users.js" />

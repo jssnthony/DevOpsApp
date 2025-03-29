@@ -43,8 +43,6 @@ router.post('/:id', async function (req, res) {
             repository
         });
 
-        console.log(body);
-
         const response = await fetch(`${API_URL_PROJECTS}/${projectId}`, {
             method: 'PUT',
             headers: {
