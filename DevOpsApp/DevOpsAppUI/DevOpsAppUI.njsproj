@@ -35,6 +35,7 @@
     <Content Include="routes\index.js" />
     <Content Include="routes\projects.js" />
     <Content Include="routes\projectsInsert.js" />
+    <Content Include="routes\projectsUpdate.js" />
     <Content Include="routes\users.js" />
     <Content Include="package.json" />
     <Content Include="public\stylesheets\main.css" />
@@ -44,6 +45,7 @@
     <Content Include="views\error.pug" />
     <Content Include="views\projects.pug" />
     <Content Include="views\projectsInsert.pug" />
+    <Content Include="views\projectsUpdate.pug" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="public\" />

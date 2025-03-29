@@ -58,7 +58,7 @@ namespace DevOpsAppData.ProjectsRepository
             {
                 Description = toInsert.Description,
                 Id = id,
-                Title = toInsert.Name,
+                Title = toInsert.Title,
                 Repository = toInsert.Repository,
                 IsActive = true,
                 IsArchive = false
@@ -74,7 +74,7 @@ namespace DevOpsAppData.ProjectsRepository
             if (record == null)
                 return null;
 
-            record.Title = toUpdate.Name;
+            record.Title = toUpdate.Title;
             record.Repository = toUpdate.Repository;
             record.Description = toUpdate.Description;
             

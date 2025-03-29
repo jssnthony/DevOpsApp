@@ -15,7 +15,7 @@ namespace DevOpsGateway.SDKs
         Task<Guid> InsertProjectsAsync(ProjectDtoToInsert projectDtoToInsert);
 
         [Put("/Projects/{id}")]
-        Task<Guid> UpdateProjectsAsync(Guid id, ProjectDtoToUpdate projectDtoToInsert);
+        Task<ProjectsResultDto?> UpdateProjectsAsync(Guid id, ProjectDtoToUpdate projectDtoToInsert);
 
         [Delete("/Projects/Archive/{id}")]
         Task ArchiveProjectAsync(Guid id);
