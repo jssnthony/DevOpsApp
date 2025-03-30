@@ -8,7 +8,7 @@
 import Foundation
 
 struct ProjectDTOInput: Codable {
-    let name: String
+    let title: String
     let description: String?
     let repository: String?
 }

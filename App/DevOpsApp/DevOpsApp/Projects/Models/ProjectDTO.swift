@@ -9,7 +9,7 @@ import Foundation
 
 struct ProjectDTO: Codable, Identifiable {
     let id: String
-    let name: String
+    let title: String
     let description: String
     let repository: String
 }
