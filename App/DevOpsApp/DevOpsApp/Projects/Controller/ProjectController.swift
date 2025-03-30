@@ -57,4 +57,34 @@ class ProjectController: ObservableObject {
             }
         }.resume()
     }
+    
+    func updateProject(_ project: ProjectDTO, completion: @escaping (Bool) -> Void) {
+            guard let url = URL(string: "http://192.168.1.36:5001/Projects/\(project.id)") else { return }
+
+            var request = URLRequest(url: url)
+            request.httpMethod = "PUT"
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+
+            do {
+                request.httpBody = try JSONEncoder().encode(project)
+            } catch {
+                print("Error encoding JSON: \(error)")
+                completion(false)
+                return
+            }
+
+            URLSession.shared.dataTask(with: request) { data, response, error in
+                if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 {
+                    DispatchQueue.main.async {
+                        self.fetchProjects() // 🔥 Actualiza la lista después de editar
+                        completion(true)
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        completion(false)
+                    }
+                }
+            }.resume()
+        }
+
 }
