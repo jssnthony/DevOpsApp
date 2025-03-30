@@ -3,9 +3,10 @@ USE devopsapp;
 
 CREATE TABLE IF NOT EXISTS projects (
     project_index INT AUTO_INCREMENT PRIMARY KEY,
-    project_id CHAR(36) NOT NULL,
+    project_id CHAR(36) NOT NULL UNIQUE,
     project_title VARCHAR(255) NOT NULL,
     project_description TEXT,
     project_repository VARCHAR(255),
-    UNIQUE KEY (project_index)
+    is_archive TINYINT(1) default 0,
+    is_active TINYINT(1) default 0
 );

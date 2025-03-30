@@ -29,4 +29,5 @@ router.get('/', async function (req, res) {
         res.status(500).send('Error al obtener proyectos');
     }
 });
+
 module.exports = router;

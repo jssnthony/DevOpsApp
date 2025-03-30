@@ -13,10 +13,17 @@ block content
         th Nombre
         th Descripción
         th Repositorio
+        th Acciones
     tbody
       each project in projects
         tr
           td= project.id
-          td= project.name
+          td= project.title
           td= project.description
           td= project.repository
+          td
+            a(href=`/projectsUpdate/${project.id}`) Editar
+            form(action="/projectsArchive/" + project.id, method="post", style="display:inline")
+              button(type="submit") Archivar
+            form(action="/projectsDisable/" + project.id, method="post", style="display:inline")
+              button(type="submit") Desactivar

@@ -11,7 +11,7 @@ router.get('/', function (req, res) {
 
 router.post('/', async function (req, res) {
     try {
-        const { name, description, repository } = req.body;
+        const { title, description, repository } = req.body;
 
         const API_URL_PROJECTS = req.app.locals.config.API_URL_PROJECTS; 
         
@@ -21,7 +21,7 @@ router.post('/', async function (req, res) {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                name,
+                title,
                 description,
                 repository
             })
