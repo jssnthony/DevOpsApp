@@ -16,7 +16,7 @@ struct ProjectMainView: View {
         NavigationView {
             List(projectController.projects) { project in
                 VStack(alignment: .leading) {
-                    Text(project.name).font(.headline)
+                    Text(project.title).font(.headline)
                     Text(project.description).font(.subheadline)
                 }
             }

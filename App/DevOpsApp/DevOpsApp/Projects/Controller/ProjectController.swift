@@ -27,14 +27,14 @@ class ProjectController: ObservableObject {
         }.resume()
     }
 
-    func insertProject(name: String, description: String?, repository: String?, completion: @escaping (Bool) -> Void) {
+    func insertProject(title: String, description: String?, repository: String?, completion: @escaping (Bool) -> Void) {
         guard let url = URL(string: "http://192.168.1.36:5001/Projects") else { return }
 
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
 
-        let newProject = ProjectDTOInput(name: name, description: description, repository: repository)
+        let newProject = ProjectDTOInput(title: title, description: description, repository: repository)
 
         do {
             request.httpBody = try JSONEncoder().encode(newProject)
