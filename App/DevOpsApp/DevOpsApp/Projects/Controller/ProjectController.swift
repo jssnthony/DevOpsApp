@@ -59,24 +59,64 @@ class ProjectController: ObservableObject {
     }
     
     func updateProject(_ project: ProjectDTO, completion: @escaping (Bool) -> Void) {
-            guard let url = URL(string: "http://192.168.1.36:5001/Projects/\(project.id)") else { return }
+        guard let url = URL(string: "http://192.168.1.36:5001/Projects/\(project.id)") else { return }
+
+        var request = URLRequest(url: url)
+        request.httpMethod = "PUT"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+
+        do {
+            request.httpBody = try JSONEncoder().encode(project)
+        } catch {
+            print("Error encoding JSON: \(error)")
+            completion(false)
+            return
+        }
+
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 {
+                DispatchQueue.main.async {
+                    self.fetchProjects() // 🔥 Actualiza la lista después de editar
+                    completion(true)
+                }
+            } else {
+                DispatchQueue.main.async {
+                    completion(false)
+                }
+            }
+        }.resume()
+    }
+
+    func archiveProject(_ projectId: String, completion: @escaping (Bool) -> Void) {
+        guard let url = URL(string: "http://192.168.1.36:5001/Projects/Archive/\(projectId)") else { return }
+
+        var request = URLRequest(url: url)
+        request.httpMethod = "DELETE"
+
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 {
+                DispatchQueue.main.async {
+                    self.fetchProjects() // 🔥 Recargar lista después de archivar
+                    completion(true)
+                }
+            } else {
+                DispatchQueue.main.async {
+                    completion(false)
+                }
+            }
+        }.resume()
+    }
+    
+    func deleteProject(_ id: String, completion: @escaping (Bool) -> Void) {
+            guard let url = URL(string: "http://192.168.1.36:5001/Projects/Delete/\(id)") else { return }
 
             var request = URLRequest(url: url)
-            request.httpMethod = "PUT"
-            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.httpMethod = "DELETE"
 
-            do {
-                request.httpBody = try JSONEncoder().encode(project)
-            } catch {
-                print("Error encoding JSON: \(error)")
-                completion(false)
-                return
-            }
-
-            URLSession.shared.dataTask(with: request) { data, response, error in
+            URLSession.shared.dataTask(with: request) { _, response, error in
                 if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 {
                     DispatchQueue.main.async {
-                        self.fetchProjects() // 🔥 Actualiza la lista después de editar
+                        self.fetchProjects() // 🔄 Refrescar la lista después de eliminar
                         completion(true)
                     }
                 } else {
@@ -86,5 +126,4 @@ class ProjectController: ObservableObject {
                 }
             }.resume()
         }
-
 }
