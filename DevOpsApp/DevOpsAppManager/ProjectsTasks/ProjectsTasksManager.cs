@@ -1,4 +1,6 @@
-﻿using DevOpsAppManager.Tasks;
+﻿using AutoMapper;
+using DevOpsAppManager.Tasks;
+using DevOpsAppRepository.ProjectsTasksRepository;
 using Models.ProjectsTasks;
 using System;
 using System.Collections.Generic;
@@ -10,29 +12,43 @@ namespace DevOpsAppManager.ProjectsTasks
 {
     public class ProjectsTasksManager : IProjectsTasksManager
     {
-        public Task<bool> AlterProjectTaskStatusAsync(Guid TaskId)
-        {
-            throw new NotImplementedException();
+        private readonly IProjectsTasksRepository _projectsTasksRepository;
+        private readonly IMapper _mapper;
+
+        public ProjectsTasksManager(IProjectsTasksRepository projectsTasksRepository,
+            IMapper mapper) {
+            _projectsTasksRepository = projectsTasksRepository;
+            _mapper = mapper;
+
         }
 
-        public Task<IEnumerable<ProjectsTasksResultDto>> GetAllProjectsTasksAsync(Guid ProjectId)
+        public async Task<bool> AlterProjectTaskStatusAsync(Guid TaskId)
         {
-            throw new NotImplementedException();
+            return await _projectsTasksRepository.AlterProjectTaskStatusAsync(TaskId);
         }
 
-        public Task<ProjectsTasksResultDto?> GetProjectsTaskAsync(Guid TaskId)
+        public async Task<IEnumerable<ProjectsTasksResultDto>> GetAllProjectsTasksAsync(Guid ProjectId)
         {
-            throw new NotImplementedException();
+            return _mapper.Map<IEnumerable<ProjectsTasksResultDto>>(
+                await _projectsTasksRepository.GetAllProjectsTasksAsync(ProjectId));
         }
 
-        public Task<ProjectsTasksResultDto?> InsertProjectTaskAsync(Guid ProjectId, ProjectTaskToInsert ProjectTask)
+        public async Task<ProjectsTasksResultDto?> GetProjectsTaskAsync(Guid TaskId)
         {
-            throw new NotImplementedException();
+            return _mapper.Map<ProjectsTasksResultDto>(
+                await _projectsTasksRepository.GetProjectsTaskAsync(TaskId));
         }
 
-        public Task<ProjectsTasksResultDto?> UpdateProjectTaskAsync(Guid TaskId, ProjectTaskToUpdate ProjectTask)
+        public async Task<ProjectsTasksResultDto?> InsertProjectTaskAsync(Guid ProjectId, ProjectTaskToInsert toInsert)
         {
-            throw new NotImplementedException();
+            return _mapper.Map<ProjectsTasksResultDto>(
+                await _projectsTasksRepository.InsertProjectTaskAsync(ProjectId, toInsert));
+        }
+
+        public async Task<ProjectsTasksResultDto?> UpdateProjectTaskAsync(Guid TaskId, ProjectTaskToUpdate toUpdate)
+        {
+            return _mapper.Map<ProjectsTasksResultDto>(
+                await _projectsTasksRepository.UpdateProjectTaskAsync(TaskId, toUpdate));
         }
     }
 }
