@@ -1,6 +1,6 @@
 ﻿using Models.Projects;
 
-namespace DevOpsAppData.ProjectsRepository
+namespace DevOpsAppRepository.ProjectsRepository
 {
     public interface IProjectsRepository
     {

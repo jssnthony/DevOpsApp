@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using DevOpsAppData.ProjectsRepository;
+using DevOpsAppRepository.ProjectsRepository;
 using Models.Projects;
 
 namespace DevOpsAppManager.Projects

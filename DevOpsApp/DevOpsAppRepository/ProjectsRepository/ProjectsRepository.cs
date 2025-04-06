@@ -4,7 +4,7 @@ using DevOpsAppData.Entities;
 using Microsoft.EntityFrameworkCore;
 using Models.Projects;
 
-namespace DevOpsAppData.ProjectsRepository
+namespace DevOpsAppRepository.ProjectsRepository
 {
     public class ProjectsRepository : IProjectsRepository
     {
@@ -39,8 +39,8 @@ namespace DevOpsAppData.ProjectsRepository
 
         public async Task<IEnumerable<ProjectDto>> GetAllAsync()
         {
-            return await _context.Projects.Where(x=> !x.IsArchive && x.IsActive)
-                .Select(x=> _mapper.Map<ProjectDto>(x)).ToListAsync();
+            return await _context.Projects.Where(x => !x.IsArchive && x.IsActive)
+                .Select(x => _mapper.Map<ProjectDto>(x)).ToListAsync();
         }
 
         public async Task<ProjectDto?> GetAsync(Guid id)
@@ -77,7 +77,7 @@ namespace DevOpsAppData.ProjectsRepository
             record.Title = toUpdate.Title;
             record.Repository = toUpdate.Repository;
             record.Description = toUpdate.Description;
-            
+
             await _context.SaveChangesAsync();
             return _mapper.Map<ProjectDto>(record);
         }

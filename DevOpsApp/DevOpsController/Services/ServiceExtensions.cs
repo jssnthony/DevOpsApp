@@ -1,5 +1,7 @@
 ﻿using DevOpsAppData.ProjectsRepository;
 using DevOpsAppManager.Projects;
+using DevOpsAppManager.ProjectsTasks;
+using DevOpsAppManager.Tasks;
 using DevOpsManager.Projects;
 
 namespace DevOpsController.Services
@@ -13,6 +15,8 @@ namespace DevOpsController.Services
 
             services.AddScoped<IProjectsManager, ProjectsManager>();
             services.AddScoped<IProjectsRepository, ProjectsRepository>();
+
+            services.AddScoped<IProjectsTasksManager, ProjectsTasksManager>();
         }
     }
 }

@@ -1,0 +1,12 @@
+--CREATE TABLE IF NOT EXISTS projects_tasks (
+--    task_index INT AUTO_INCREMENT PRIMARY KEY,
+--    task_id CHAR(36) NOT NULL UNIQUE,
+--    project_index INT NOT NULL,
+--    task_title VARCHAR(255) NOT NULL,
+--    task_description TEXT,
+--    is_done TINYINT(1) DEFAULT 0,
+
+--    FOREIGN KEY (project_index) REFERENCES projects(project_index)
+--        ON DELETE CASCADE
+--        ON UPDATE CASCADE
+--);

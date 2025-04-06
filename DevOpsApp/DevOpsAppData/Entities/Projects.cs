@@ -7,30 +7,32 @@ namespace DevOpsAppData.Entities
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [Column("PROJECT_INDEX")]
+        [Column("project_index")]
         public int Index { get; set; } 
 
         [Required]
-        [Column("PROJECT_ID")]
+        [Column("project_id")]
         [StringLength(36)]
         public Guid Id { get; set; } 
 
         [Required]
-        [Column("PROJECT_TITLE")]
+        [Column("project_title")]
         [StringLength(255)]
         public required string Title { get; set; } 
 
-        [Column("PROJECT_DESCRIPTION", TypeName = "TEXT")]
+        [Column("project_description", TypeName = "text")]
         public string? Description { get; set; } 
 
-        [Column("PROJECT_REPOSITORY")]
+        [Column("project_repository")]
         [StringLength(255)]
         public string? Repository { get; set; } 
 
-        [Column("IS_ARCHIVE")]
+        [Column("is_archive")]
         public bool IsArchive { get; set; } = false; 
 
-        [Column("IS_ACTIVE")]
-        public bool IsActive { get; set; } = false; 
+        [Column("is_active")]
+        public bool IsActive { get; set; } = false;
+
+        public ICollection<ProjectsTasks> Tasks { get; set; } = new List<ProjectsTasks>();
     }
 }

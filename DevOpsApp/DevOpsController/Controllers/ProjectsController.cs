@@ -17,13 +17,13 @@ namespace DevOpsController.Controllers
             _manager = projectsManager;
         }
 
-        [HttpGet(Name = "GetAll")]
+        [HttpGet]
         public async Task<IActionResult> GetAll()
         {
             return Ok(await _manager.GetAsync());
         }
 
-        [HttpGet("{id}", Name = "Get")]
+        [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> Get(Guid id)
         {
