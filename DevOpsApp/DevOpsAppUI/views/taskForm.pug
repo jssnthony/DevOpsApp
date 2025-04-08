@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  h1 Nueva Tarea
+
+  form(action=`/projects/${projectId}/tasks/new`, method="POST")
+    div
+      label(for="title") Título:
+      input(type="text", name="title", required)
+
+    div
+      label(for="description") Descripción:
+      textarea(name="description", required)
+
+    div
+      button(type="submit") Guardar

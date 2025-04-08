@@ -24,6 +24,7 @@ block content
           td
             a(href=`/projectsUpdate/${project.id}`) Editar
             form(action="/projectsArchive/" + project.id, method="post", style="display:inline")
-              button(type="submit") Archivar
+            button(type="submit") Archivar
             form(action="/projectsDisable/" + project.id, method="post", style="display:inline")
-              button(type="submit") Desactivar
+            button(type="submit") Desactivar
+            a(href=`/projectsTasks/${project.id}`) Ver Tareas

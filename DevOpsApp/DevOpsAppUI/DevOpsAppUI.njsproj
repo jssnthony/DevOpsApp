@@ -38,6 +38,7 @@
     <Content Include="routes\projectsArchive.js" />
     <Content Include="routes\projectsInsert.js" />
     <Content Include="routes\projectsUpdate.js" />
+    <Content Include="routes\projectsTasks.js" />
     <Content Include="routes\users.js" />
     <Content Include="package.json" />
     <Content Include="public\stylesheets\main.css" />
@@ -48,6 +49,8 @@
     <Content Include="views\projects.pug" />
     <Content Include="views\projectsInsert.pug" />
     <Content Include="views\projectsUpdate.pug" />
+    <Content Include="views\projectsTasks.pug" />
+    <Content Include="views\taskForm.pug" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="public\" />
