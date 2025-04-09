@@ -1,0 +1,26 @@
+extends layout
+
+block content
+  h1 Agregar Tarea al Proyecto
+
+  form(action='/projects/' + projectId + '/tasks/insert', method='post')
+    div
+      label(for='title') Título:
+      input(type='text', name='title', id='title', required)
+
+    div
+      label(for='description') Descripción:
+      textarea(name='description', id='description', required)
+
+    div
+      label(for='status') Estado:
+      select(name='status', id='status')
+        option(value='Pendiente') Pendiente
+        option(value='En Proceso') En Proceso
+        option(value='Completado') Completado
+
+    div
+      button(type='submit') Agregar Tarea
+
+    br
+    a(href='/projectsTasks/' + projectId ) ? Volver a la lista de tareas

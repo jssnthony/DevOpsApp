@@ -3,7 +3,7 @@ extends layout
 block content
   h1 Tareas del Proyecto #{projectId}
 
-  a(href=`/projects/${projectId}/tasks/new`) Agregar Nueva Tarea
+  a(href=`/projectsTasksInsert/${projectId}`) Agregar Nueva Tarea
 
   if tasks.length
     table
