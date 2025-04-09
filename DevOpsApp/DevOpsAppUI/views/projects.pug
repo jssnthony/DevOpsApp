@@ -1,8 +1,10 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  .site-title
+    h1= title 
+  .site-description 
+    p Welcome to #{title}
 
   a(href="/projectsInsert") Agregar Nuevo Proyecto
 
@@ -14,12 +16,13 @@ block content
         th Descripción
         th Repositorio
         th Acciones
+        th Tareas
     tbody
       each project in projects
         tr
-          td= project.id
-          td= project.title
-          td= project.description
+          td= project.id.slice(-12)
+          td.title-column= project.title 
+          td.description-column= project.description
           td= project.repository
           td
             a(href=`/projectsUpdate/${project.id}`) Editar
@@ -27,4 +30,5 @@ block content
             button(type="submit") Archivar
             form(action="/projectsDisable/" + project.id, method="post", style="display:inline")
             button(type="submit") Desactivar
+          td
             a(href=`/projectsTasks/${project.id}`) Ver Tareas

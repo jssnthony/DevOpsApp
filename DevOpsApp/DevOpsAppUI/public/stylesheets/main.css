@@ -7,11 +7,19 @@
 body {
     font-family: "poppins";
     font-weight: 800;
-    background: linear-gradient(176deg, rgb(241, 241, 235) 0%, rgb(243 243 211) 50%, rgb(245 245 198) 100%);
+    background: linear-gradient(176deg, rgb(241, 241, 235) 0%, rgb(243 243 211) 50%, rgb(220 197 233) 100%);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.content {
+    border: 8px solid rgb(220 197 233);
+    border-radius: 15px;
+    width: 80%;
+    background: rgb(255,241,249);
+    background: linear-gradient(176deg, rgba(255,241,249,1) 0%, rgba(255,255,247,1) 32%, rgba(245,241,255,1) 100%);
 }
 
 .font-title {
@@ -97,4 +105,45 @@ nav ul {
                 display: block;
                 width: 100%;
             }
+}
+
+.site-title {
+    margin: 20px;
+}
+
+.site-description {
+    margin: 20px;
+    color: gray;
+}
+
+table {
+    background: #ffffff;
+    width: 92%;
+    margin-left: auto;
+    margin-right: auto;
+    border: 3px solid rgb(255,241,249);
+}
+
+    table thead {
+        color: gray;
+        font-size: 14px;
+    }
+
+    table tbody tr td {
+        border-top: 1px solid black;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        text-align: center;
+        color: rgb(203 139 239);
+        font-weight: 100;
+    }
+
+.title-column {
+    color: #2c3e50;
+    font-weight: bold;
+}
+
+.description-column {
+    color: gray;
+    
 }
