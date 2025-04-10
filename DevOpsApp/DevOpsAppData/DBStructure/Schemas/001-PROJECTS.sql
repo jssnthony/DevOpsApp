@@ -10,3 +10,7 @@
 --    is_archive TINYINT(1) default 0,
 --    is_active TINYINT(1) default 0
 --);
+
+
+
+

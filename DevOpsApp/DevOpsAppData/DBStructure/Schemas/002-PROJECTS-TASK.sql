@@ -10,3 +10,16 @@
 --        ON DELETE CASCADE
 --        ON UPDATE CASCADE
 --);
+
+CREATE VIEW view_projects_tasks AS
+SELECT 
+    pt.task_id,
+    pt.project_index,
+    pt.task_title,
+    pt.task_description,
+    pt.is_done,
+    p.project_id  
+FROM 
+    projects_tasks pt
+JOIN 
+    projects p ON pt.project_index = p.project_index;  
