@@ -32,12 +32,16 @@
     <Content Include="app.js" />
     <Content Include="config.json" />
     <Content Include="public\icons\indexicon.png" />
+    <Content Include="public\javascripts\projectsTasksAlterStatus.js" />
     <Content Include="routes\index.js" />
     <Content Include="routes\projectsDisable.js" />
     <Content Include="routes\projects.js" />
     <Content Include="routes\projectsArchive.js" />
     <Content Include="routes\projectsInsert.js" />
+    <Content Include="routes\projectsTasksInsert.js" />
+    <Content Include="routes\projectsTasksUpdate.js" />
     <Content Include="routes\projectsUpdate.js" />
+    <Content Include="routes\projectsTasks.js" />
     <Content Include="routes\users.js" />
     <Content Include="package.json" />
     <Content Include="public\stylesheets\main.css" />
@@ -47,7 +51,10 @@
     <Content Include="views\error.pug" />
     <Content Include="views\projects.pug" />
     <Content Include="views\projectsInsert.pug" />
+    <Content Include="views\projectsTasksInsert.pug" />
+    <Content Include="views\projectsTasksUpdate.pug" />
     <Content Include="views\projectsUpdate.pug" />
+    <Content Include="views\projectsTasks.pug" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="public\" />

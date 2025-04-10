@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "DevOpsAppRepository": {
+      "commandName": "Project"
+    },
+    "Container (Dockerfile)": {
+      "commandName": "Docker"
+    }
+  }
+}

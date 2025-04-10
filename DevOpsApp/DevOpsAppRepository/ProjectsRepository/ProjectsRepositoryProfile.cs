@@ -1,12 +1,13 @@
 ﻿using AutoMapper;
-using DevOpsAppData.Entities;
 using Models.Projects;
+using DevOpsAppData.Entities;
 
-namespace DevOpsAppData.ProjectsRepository
+namespace DevOpsAppRepository.ProjectsRepository
 {
     public class ProjectsRepositoryProfile : Profile
     {
-        public ProjectsRepositoryProfile() {
+        public ProjectsRepositoryProfile()
+        {
             CreateMap<Projects, ProjectDto>();
         }
     }

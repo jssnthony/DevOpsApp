@@ -21,6 +21,9 @@ namespace DevOpsGateway.Extensions
             // Configurar Refit (Opcional, si usas Refit)
             services.AddRefitClient<IProjectApi>()
                 .ConfigureHttpClient(client => client.BaseAddress = new Uri(projectApiUri));
+
+            services.AddRefitClient<IProjectsTasksApi>()
+                .ConfigureHttpClient(client => client.BaseAddress = new Uri(projectApiUri));
         }
     }
 }

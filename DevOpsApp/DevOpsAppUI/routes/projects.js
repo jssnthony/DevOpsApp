@@ -7,9 +7,7 @@ process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0'; // Deshabilitar validación SS
 router.get('/', async function (req, res) {
     try {
         const API_URL_PROJECTS = req.app.locals.config.API_URL_PROJECTS; // Obtener la URL desde app.js
-        console.log("API URL");
-
-        console.log(API_URL_PROJECTS);
+        
         const response = await fetch(`${API_URL_PROJECTS}` , {
             method: 'GET',
             headers: {

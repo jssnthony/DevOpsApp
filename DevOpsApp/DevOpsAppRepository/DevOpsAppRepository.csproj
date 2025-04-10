@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DevOpsAppRepository\DevOpsAppRepository.csproj" />
+    <ProjectReference Include="..\DevOpsAppData\DevOpsAppData.csproj" />
     <ProjectReference Include="..\Models\Models.csproj" />
   </ItemGroup>
 

@@ -5,6 +5,7 @@
 
 *.DS_Store
 
+DevOpsApp\DevOpsApp\DevOpsController\appsettings.json 
 
 # User-specific files
 *.rsuser
@@ -402,4 +403,3 @@ FodyWeavers.xsd
 /DevOpsApp/DevOpsController/appsettings.Development.json
 /DevOpsApp/DevOpsGateway/appsettings.Release.json
 /DevOpsApp/DevOpsGateway/appsettings.Development.json
-/DevOpsApp/DevOpsController/appsettings.json
