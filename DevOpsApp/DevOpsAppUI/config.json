@@ -1,4 +1,0 @@
-{
-  "API_URL_PROJECTS": "http://localhost:5101/Projects",
-  "API_URL_PROJECTS_TASKS": "http://localhost:5101/ProjectsTasks"
-}

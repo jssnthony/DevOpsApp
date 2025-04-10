@@ -403,3 +403,5 @@ FodyWeavers.xsd
 /DevOpsApp/DevOpsGateway/appsettings.Release.json
 /DevOpsApp/DevOpsGateway/appsettings.Development.json
 /DevOpsApp/DevOpsController/appsettings.json
+/DevOpsApp/DevOpsGateway/appsettings.json
+/DevOpsApp/DevOpsAppUI/config.json
