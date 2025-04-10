@@ -1,6 +1,7 @@
 extends layout
 
 block content
+
   h1 Tareas del Proyecto #{projectId}
 
   a(href=`/projectsTasksInsert/${projectId}`) Agregar Nueva Tarea
@@ -19,6 +20,12 @@ block content
             td= task.id
             td= task.title
             td= task.description
-            td= task.isDone ? 'Done' : 'ToDo'
+            td
+              button(
+                class="task-status",
+                data-task-id=task.id,
+                onclick="alterStatus(this)"
+              )= task.isDone ? 'Done' : 'ToDo'
+                
   else
     p No hay tareas registradas aún.

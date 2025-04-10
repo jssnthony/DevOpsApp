@@ -25,4 +25,26 @@ router.get('/:projectId', async function (req, res) {
     }
 });
 
+router.put('/alter-status/:taskId', async function (req, res) {
+    const taskId = req.params.taskId;
+    const API_URL = req.app.locals.config.API_URL_PROJECTS_TASKS;
+    const alterStatusUrl = `${API_URL}/AlterStatus/${taskId}`;
+
+    try {
+        const response = await fetch(alterStatusUrl, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' }
+        });
+
+        if (!response.ok) throw new Error(`Error al actualizar estado: ${response.statusText}`);
+
+        const updatedTask = await response.json();
+        res.status(200).json(updatedTask);
+    } catch (error) {
+        console.error('Error actualizando estado:', error);
+        res.status(500).json({ error: 'No se pudo cambiar el estado' });
+    }
+});
+
+
 module.exports = router;

@@ -32,6 +32,7 @@
     <Content Include="app.js" />
     <Content Include="config.json" />
     <Content Include="public\icons\indexicon.png" />
+    <Content Include="public\javascripts\projectsTasksAlterStatus.js" />
     <Content Include="routes\index.js" />
     <Content Include="routes\projectsDisable.js" />
     <Content Include="routes\projects.js" />
