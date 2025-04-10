@@ -12,13 +12,13 @@ router.get('/:projectId', async function (req, res) {
 router.post('/:projectId', async function (req, res) {
     const API_URL = req.app.locals.config.API_URL_PROJECTS_TASKS;
     const projectId = req.params.projectId;
-    const { title, description, status } = req.body;
+    const { title, description } = req.body;
 
     try {
         const response = await fetch(`${API_URL}/${projectId}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ title, description, status })
+            body: JSON.stringify({ title, description })
         });
 
         if (!response.ok) {
