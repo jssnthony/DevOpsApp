@@ -39,6 +39,7 @@
     <Content Include="routes\projectsArchive.js" />
     <Content Include="routes\projectsInsert.js" />
     <Content Include="routes\projectsTasksInsert.js" />
+    <Content Include="routes\projectsTasksUpdate.js" />
     <Content Include="routes\projectsUpdate.js" />
     <Content Include="routes\projectsTasks.js" />
     <Content Include="routes\users.js" />
@@ -51,6 +52,7 @@
     <Content Include="views\projects.pug" />
     <Content Include="views\projectsInsert.pug" />
     <Content Include="views\projectsTasksInsert.pug" />
+    <Content Include="views\projectsTasksUpdate.pug" />
     <Content Include="views\projectsUpdate.pug" />
     <Content Include="views\projectsTasks.pug" />
   </ItemGroup>

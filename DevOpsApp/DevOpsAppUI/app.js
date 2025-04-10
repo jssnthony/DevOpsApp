@@ -19,6 +19,7 @@ var projectsArchive = require('./routes/projectsArchive');
 var projectsDisable = require('./routes/projectsDisable');
 var projectTasks = require('./routes/projectsTasks');
 var projectTasksInsert = require('./routes/projectsTasksInsert');
+var projectTasksUpdate = require('./routes/projectsTasksUpdate');
 
 
 var app = express();
@@ -46,6 +47,7 @@ app.use('/projectsArchive', projectsArchive);
 app.use('/projectsDisable', projectsDisable);
 app.use('/projectsTasks', projectTasks);
 app.use('/projectsTasksInsert', projectTasksInsert);
+app.use('/projectsTasksUpdate', projectTasksUpdate);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

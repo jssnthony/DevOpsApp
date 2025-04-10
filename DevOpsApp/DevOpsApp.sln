@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevOpsAppData", "DevOpsAppD
 EndProject
 Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "DevOpsAppUI", "DevOpsAppUI\DevOpsAppUI.njsproj", "{4058AC0D-F6C9-48A8-B3AE-FAFDC5AA3708}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevOpsAppRepository", "DevOpsAppRepository\DevOpsAppRepository.csproj", "{ACD8066B-3608-4F2A-B596-7F842B89C191}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevOpsAppRepository", "DevOpsAppRepository\DevOpsAppRepository.csproj", "{ACD8066B-3608-4F2A-B596-7F842B89C191}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

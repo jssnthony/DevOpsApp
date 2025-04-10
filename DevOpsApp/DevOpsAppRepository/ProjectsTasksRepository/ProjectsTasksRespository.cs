@@ -33,16 +33,18 @@ namespace DevOpsAppRepository.ProjectsTasksRepository
 
         public async Task<IEnumerable<ProjectsTasksDto>> GetAllProjectsTasksAsync(Guid ProjectId)
         {
-            return await _context.ProjectsTasks.Where(x => x.Project.Id == ProjectId)
+            return await _context.ViewProjectsTasks.Where(x => x.ProjectId == ProjectId)
                 .Select(x => _mapper.Map<ProjectsTasksDto>(x))
                 .ToListAsync();
         }
 
         public async Task<ProjectsTasksDto?> GetProjectsTaskAsync(Guid TaskId)
         {
-            var record = await _context.ProjectsTasks.FirstOrDefaultAsync(x=> x.Id == TaskId);
+            var record = await _context.ViewProjectsTasks
+                .FirstOrDefaultAsync(x=> x.TaskId == TaskId);
             if (record == null) return null;
-            return _mapper.Map<ProjectsTasksDto>(record);
+            var result = _mapper.Map<ProjectsTasksDto>(record);
+            return result;
         }
 
         public async Task<ProjectsTasksDto?> InsertProjectTaskAsync(Guid ProjectId, ProjectTaskToInsert toInsert)
@@ -66,13 +68,16 @@ namespace DevOpsAppRepository.ProjectsTasksRepository
 
         public async Task<ProjectsTasksDto?> UpdateProjectTaskAsync(Guid TaskId, ProjectTaskToUpdate toUpdate)
         {
-            var record = await _context.ProjectsTasks.FirstOrDefaultAsync(x => x.Id == TaskId);
+            var record = await _context.ProjectsTasks
+                .Include(x => x.Project)
+                .FirstOrDefaultAsync(x => x.Id == TaskId);
             if (record == null) return null;
+
             record.Title = toUpdate.Title;
             record.Description = toUpdate.Description;
-            var result = _mapper.Map<ProjectsTasksDto>(record);
+            
             await _context.SaveChangesAsync();
-            return result;
+            return _mapper.Map<ProjectsTasksDto>(record); ;
         }
     }
 }

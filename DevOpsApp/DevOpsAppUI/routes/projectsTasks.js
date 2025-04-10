@@ -7,8 +7,7 @@ process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0'; // ignorar SSL si es necesari
 router.get('/:projectId', async function (req, res) {
     const projectId = req.params.projectId;
     const API_URL = req.app.locals.config.API_URL_PROJECTS_TASKS;
-    console.log('API_URL');
-    console.log(`${API_URL}/GetAll/${projectId}`);
+
     try {
         const response = await fetch(`${API_URL}/GetAll/${projectId}`, {
             method: 'GET',
@@ -18,6 +17,7 @@ router.get('/:projectId', async function (req, res) {
         if (!response.ok) throw new Error(`Error al obtener tareas: ${response.statusText}`);
 
         const tasks = await response.json();
+        console.log(tasks);
         res.render('projectsTasks', { title: 'Tareas', tasks, projectId });
     } catch (error) {
         console.error('Error:', error);

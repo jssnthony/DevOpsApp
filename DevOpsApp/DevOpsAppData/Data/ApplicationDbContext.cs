@@ -11,6 +11,8 @@ namespace DevOpsAppData.Data
         public DbSet<Projects> Projects { get; set; }
         public DbSet<ProjectsTasks> ProjectsTasks { get; set; }
 
+        public DbSet<ViewProjectsTasks> ViewProjectsTasks { get; set; } 
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
@@ -105,6 +107,13 @@ namespace DevOpsAppData.Data
                 .WithMany(p => p.Tasks)
                 .HasForeignKey(t => t.ProjectIndex)
                 .OnDelete(DeleteBehavior.Cascade);
+
+
+            modelBuilder.Entity<ViewProjectsTasks>()
+            .ToTable("view_projects_tasks")  // Asegúrate que el nombre de la vista sea correcto
+            .HasNoKey()  // Indica que no tiene una clave primaria explícita
+            .Property(p => p.TaskId)  // Definir la propiedad Id sin clave primaria
+            .ValueGeneratedNever();  // Asegura que no se generen valores automáticamente para Id
         }
     }
 }

@@ -14,7 +14,6 @@
 CREATE VIEW view_projects_tasks AS
 SELECT 
     pt.task_id,
-    pt.project_index,
     pt.task_title,
     pt.task_description,
     pt.is_done,

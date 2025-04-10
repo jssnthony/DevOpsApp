@@ -20,6 +20,7 @@ namespace DevOpsController.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> Get(Guid taskId) {
             return Ok(await _manager.GetProjectsTaskAsync(taskId));
+
         }
 
         [HttpGet("GetAll/{projectId}")]

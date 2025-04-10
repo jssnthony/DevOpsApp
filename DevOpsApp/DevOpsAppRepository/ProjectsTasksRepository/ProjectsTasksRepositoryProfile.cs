@@ -14,7 +14,12 @@ namespace DevOpsAppRepository.ProjectsTasksRepository
     {
         public ProjectsTasksRepositoryProfile()
         {
-            CreateMap<ProjectsTasks, ProjectsTasksDto>();
+            CreateMap<ProjectsTasks, ProjectsTasksDto>()
+                .ForMember(dest => dest.ProjectId, opt => opt.MapFrom(src => src.Project.Id))
+                .ForMember(dest => dest.TaskId, opt => opt.MapFrom(src => src.Id));
+            CreateMap<ViewProjectsTasks, ProjectsTasksDto>()
+                .ForMember(dest => dest.ProjectId, opt => opt.MapFrom(src => src.ProjectId))
+                .ForMember(dest => dest.TaskId, opt => opt.MapFrom(src => src.TaskId));
         }
     }
 }
