@@ -1,7 +1,5 @@
-﻿using DevOpsAppData.Entities;
-using DevOpsAppManager.Tasks;
+﻿using DevOpsAppManager.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Models.Projects;
 using Models.ProjectsTasks;
 
 namespace DevOpsController.Controllers

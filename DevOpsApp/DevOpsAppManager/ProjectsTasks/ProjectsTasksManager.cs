@@ -1,25 +1,16 @@
-﻿using AutoMapper;
+﻿using DevOpsAppManager.Mappers;
 using DevOpsAppManager.Tasks;
 using DevOpsAppRepository.ProjectsTasksRepository;
 using Models.ProjectsTasks;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DevOpsAppManager.ProjectsTasks
 {
     public class ProjectsTasksManager : IProjectsTasksManager
     {
         private readonly IProjectsTasksRepository _projectsTasksRepository;
-        private readonly IMapper _mapper;
 
-        public ProjectsTasksManager(IProjectsTasksRepository projectsTasksRepository,
-            IMapper mapper) {
+        public ProjectsTasksManager(IProjectsTasksRepository projectsTasksRepository) {
             _projectsTasksRepository = projectsTasksRepository;
-            _mapper = mapper;
-
         }
 
         public async Task<bool> AlterProjectTaskStatusAsync(Guid TaskId)
@@ -27,27 +18,27 @@ namespace DevOpsAppManager.ProjectsTasks
             return await _projectsTasksRepository.AlterProjectTaskStatusAsync(TaskId);
         }
 
-        public async Task<IEnumerable<ProjectsTasksResultDto>> GetAllProjectsTasksAsync(Guid ProjectId)
+        public async Task<IEnumerable<ViewProjectTaskDto>> GetAllProjectsTasksAsync(Guid ProjectId)
         {
-            return _mapper.Map<IEnumerable<ProjectsTasksResultDto>>(
+            return ManagerMappers.Parse(
                 await _projectsTasksRepository.GetAllProjectsTasksAsync(ProjectId));
         }
 
-        public async Task<ProjectsTasksResultDto?> GetProjectsTaskAsync(Guid TaskId)
+        public async Task<ViewProjectTaskDto?> GetProjectsTaskAsync(Guid TaskId)
         {
-            return _mapper.Map<ProjectsTasksResultDto>(
+            return ManagerMappers.Parse(
                 await _projectsTasksRepository.GetProjectsTaskAsync(TaskId));
         }
 
-        public async Task<ProjectsTasksResultDto?> InsertProjectTaskAsync(Guid ProjectId, ProjectTaskToInsert toInsert)
+        public async Task<ViewProjectTaskDto?> InsertProjectTaskAsync(Guid ProjectId, ProjectTaskToInsert toInsert)
         {
-            return _mapper.Map<ProjectsTasksResultDto>(
+            return ManagerMappers.Parse(
                 await _projectsTasksRepository.InsertProjectTaskAsync(ProjectId, toInsert));
         }
 
-        public async Task<ProjectsTasksResultDto?> UpdateProjectTaskAsync(Guid TaskId, ProjectTaskToUpdate toUpdate)
+        public async Task<ViewProjectTaskDto?> UpdateProjectTaskAsync(Guid TaskId, ProjectTaskToUpdate toUpdate)
         {
-            return _mapper.Map<ProjectsTasksResultDto>(
+            return ManagerMappers.Parse(
                 await _projectsTasksRepository.UpdateProjectTaskAsync(TaskId, toUpdate));
         }
     }

@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+﻿using DevOpsAppManager.Mappers;
 using DevOpsAppRepository.ProjectsRepository;
 using Models.Projects;
 
@@ -7,13 +7,10 @@ namespace DevOpsAppManager.Projects
     public class ProjectsManager : IProjectsManager
     {
         private readonly IProjectsRepository _projectRepository;
-        private readonly IMapper _mapper;
 
         public ProjectsManager(
-            IProjectsRepository projectRepository,
-            IMapper mapper) { 
+            IProjectsRepository projectRepository) { 
             _projectRepository = projectRepository;
-            _mapper = mapper;
         }
 
         public async Task<bool> ArchiveRecordAsync(Guid id)
@@ -29,7 +26,7 @@ namespace DevOpsAppManager.Projects
         public async Task<IEnumerable<ProjectsResultDto>> GetAsync()
         {
             var records = await _projectRepository.GetAllAsync();
-            return _mapper.Map<IEnumerable<ProjectsResultDto>>(records);
+            return ManagerMappers.Parse(records);
         }
 
         public async Task<ProjectsResultDto?> GetAsync(Guid id)
@@ -37,7 +34,7 @@ namespace DevOpsAppManager.Projects
             var records = await _projectRepository.GetAsync(id);
             if(records == null)
                 return null;
-            return _mapper.Map<ProjectsResultDto>(records);
+            return ManagerMappers.Parse(records);
         }
 
         public async Task<Guid?> InsertAsync(ProjectDtoToInsert toInsert)
@@ -54,7 +51,7 @@ namespace DevOpsAppManager.Projects
             if (record == null)
                 return null;
 
-            return _mapper.Map<ProjectsResultDto>(record);
+            return ManagerMappers.Parse(record);
         }
     }
 }
