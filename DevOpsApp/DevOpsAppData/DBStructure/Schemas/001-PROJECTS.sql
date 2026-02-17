@@ -5,10 +5,10 @@
 --    project_index INT AUTO_INCREMENT PRIMARY KEY,
 --    project_id CHAR(36) NOT NULL UNIQUE,
 --    project_title VARCHAR(255) NOT NULL,
---    project_description TEXT,
---    project_repository VARCHAR(255),
---    is_archive TINYINT(1) default 0,
---    is_active TINYINT(1) default 0
+--    project_description TEXT NOT NULL,
+--    project_repository VARCHAR(255) NOT NULL,
+--    is_archive TINYINT(1) default 0 NOT NULL,
+--    is_active TINYINT(1) default 0 NOT NULL
 --);
 
 

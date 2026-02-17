@@ -1,6 +1,12 @@
-﻿namespace Models.ProjectsTasks
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Models.ProjectsTasks
 {
-    public class ProjectsTasksDto
+    public class ProjectTasksBaseModel
     {
         public Guid TaskId { get; set; }
         public required string Title { get; set; }

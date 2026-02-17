@@ -3,22 +3,25 @@
 --    task_id CHAR(36) NOT NULL UNIQUE,
 --    project_index INT NOT NULL,
 --    task_title VARCHAR(255) NOT NULL,
---    task_description TEXT,
---    is_done TINYINT(1) DEFAULT 0,
+--    task_description TEXT NOT NULL,
+--    is_done TINYINT(1) DEFAULT 0 NOT NULL,
 
 --    FOREIGN KEY (project_index) REFERENCES projects(project_index)
 --        ON DELETE CASCADE
 --        ON UPDATE CASCADE
 --);
 
-CREATE VIEW view_projects_tasks AS
-SELECT 
-    pt.task_id,
-    pt.task_title,
-    pt.task_description,
-    pt.is_done,
-    p.project_id  
-FROM 
-    projects_tasks pt
-JOIN 
-    projects p ON pt.project_index = p.project_index;  
+--CREATE VIEW view_projects_tasks AS
+--SELECT 
+--    pt.task_id,
+--    pt.task_title,
+--    pt.task_description,
+--    pt.is_done,
+--    p.project_id,
+--    p.project_title,
+--    p.project_description,
+--    p.project_repository
+--FROM 
+--    projects_tasks pt
+--JOIN 
+--    projects p ON pt.project_index = p.project_index;  

@@ -1,29 +1,20 @@
-﻿using AutoMapper;
-using DevOpsAppData.Data;
-using DevOpsAppData.Entities;
+﻿using DevOpsAppData.Models;
+using DevOpsAppRepository.Mappers;
 using Microsoft.EntityFrameworkCore;
 using Models.ProjectsTasks;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DevOpsAppRepository.ProjectsTasksRepository
 {
     public class ProjectsTasksRespository : IProjectsTasksRepository
     {
-        private readonly ApplicationDbContext _context;
-        private readonly IMapper _mapper;
-        public ProjectsTasksRespository(ApplicationDbContext context,
-            IMapper mapper) { 
+        private readonly DevOpsAppContext _context;
+        public ProjectsTasksRespository(DevOpsAppContext context) { 
             _context = context;
-            _mapper = mapper;
         }
 
         public async Task<bool> AlterProjectTaskStatusAsync(Guid TaskId)
         {
-            var task = await _context.ProjectsTasks.FirstOrDefaultAsync(x => x.Id == TaskId);
+            var task = await _context.ProjectsTasks.FirstOrDefaultAsync(x => x.TaskId == TaskId);
             if (task == null)
                 return false;
             task.IsDone = !task.IsDone;
@@ -31,53 +22,53 @@ namespace DevOpsAppRepository.ProjectsTasksRepository
             return task.IsDone;
         }
 
-        public async Task<IEnumerable<ProjectsTasksDto>> GetAllProjectsTasksAsync(Guid ProjectId)
+        public async Task<IEnumerable<ViewProjectTaskBaseModel>> GetAllProjectsTasksAsync(Guid ProjectId)
         {
             return await _context.ViewProjectsTasks.Where(x => x.ProjectId == ProjectId)
-                .Select(x => _mapper.Map<ProjectsTasksDto>(x))
+                .Select(x => RepositoryMappers.Parse(x))
                 .ToListAsync();
         }
 
-        public async Task<ProjectsTasksDto?> GetProjectsTaskAsync(Guid TaskId)
+        public async Task<ViewProjectTaskBaseModel?> GetProjectsTaskAsync(Guid TaskId)
         {
             var record = await _context.ViewProjectsTasks
                 .FirstOrDefaultAsync(x=> x.TaskId == TaskId);
             if (record == null) return null;
-            var result = _mapper.Map<ProjectsTasksDto>(record);
+            var result = RepositoryMappers.Parse(record);
             return result;
         }
 
-        public async Task<ProjectsTasksDto?> InsertProjectTaskAsync(Guid ProjectId, ProjectTaskToInsert toInsert)
+        public async Task<ViewProjectTaskBaseModel?> InsertProjectTaskAsync(Guid ProjectId, ProjectTaskToInsert toInsert)
         {
-            var parentProjectRecord = await _context.Projects.FirstOrDefaultAsync(x=> x.Id == ProjectId);
+            var parentProjectRecord = await _context.Projects.FirstOrDefaultAsync(x=> x.ProjectId == ProjectId);
             if (parentProjectRecord == null) return null;
 
             var newId = Guid.NewGuid();
 
-            parentProjectRecord.Tasks.Add(new ProjectsTasks()
+            parentProjectRecord.ProjectsTasks.Add(new ProjectsTask()
             {
-                Description = toInsert.Description,
-                Id = newId,
+                TaskDescription = toInsert.Description,
+                TaskId = newId,
                 IsDone = false,
-                Title = toInsert.Title,
+                TaskTitle = toInsert.Title,
             });
             await _context.SaveChangesAsync();
 
             return await GetProjectsTaskAsync(newId);
         }
 
-        public async Task<ProjectsTasksDto?> UpdateProjectTaskAsync(Guid TaskId, ProjectTaskToUpdate toUpdate)
+        public async Task<ViewProjectTaskBaseModel?> UpdateProjectTaskAsync(Guid TaskId, ProjectTaskToUpdate toUpdate)
         {
             var record = await _context.ProjectsTasks
-                .Include(x => x.Project)
-                .FirstOrDefaultAsync(x => x.Id == TaskId);
+                .Include(x => x.ProjectIndex)
+                .FirstOrDefaultAsync(x => x.TaskId == TaskId);
             if (record == null) return null;
 
-            record.Title = toUpdate.Title;
-            record.Description = toUpdate.Description;
+            record.TaskTitle = toUpdate.Title;
+            record.TaskDescription = toUpdate.Description;
             
             await _context.SaveChangesAsync();
-            return _mapper.Map<ProjectsTasksDto>(record); ;
+            return await GetProjectsTaskAsync(TaskId);
         }
     }
 }

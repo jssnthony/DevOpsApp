@@ -1,4 +1,5 @@
-using DevOpsAppData.Data;
+
+using DevOpsAppData.Models;
 using DevOpsController.Services;
 using Microsoft.EntityFrameworkCore;
 
@@ -25,7 +26,7 @@ builder.Services.AddCors(options =>
 
 var connectionString = builder.Configuration.GetConnectionString("MySqlConnection");
 
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
+builder.Services.AddDbContext<DevOpsAppContext>(options =>
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
 var app = builder.Build();
