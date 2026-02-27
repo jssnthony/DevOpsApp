@@ -24,6 +24,9 @@ namespace DevOpsGateway.Extensions
 
             services.AddRefitClient<IProjectsTasksApi>()
                 .ConfigureHttpClient(client => client.BaseAddress = new Uri(projectApiUri));
+
+            services.AddRefitClient<IInventoryApi>()
+                .ConfigureHttpClient(client => client.BaseAddress = new Uri(projectApiUri));
         }
     }
 }
