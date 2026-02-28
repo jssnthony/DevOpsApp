@@ -17,6 +17,12 @@ namespace DevOpsController.Controllers
             _manager = projectsManager;
         }
 
+        [HttpGet("stats", Name = "stats")]
+        public async Task<IActionResult> GetStats()
+        {
+            return Ok(await _manager.GetStatsProjectsAsync());
+        }
+
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {

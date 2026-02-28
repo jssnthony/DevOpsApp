@@ -18,6 +18,16 @@ namespace DevOpsAppManager.Projects
             return await _projectRepository.ArchiveRecordAsync(id) != null;
         }
 
+        public async Task<ProjectStats> GetStatsProjectsAsync()
+        {
+            var totalItems = await _projectRepository.CountProjectsAsync();
+            var stats = new ProjectStats
+            {
+                TotalItems = totalItems
+            };
+            return stats;
+        }
+
         public async Task<bool> DisableRecordAsync(Guid id)
         {
             return await _projectRepository.DisableRecordAsync(id) != null;

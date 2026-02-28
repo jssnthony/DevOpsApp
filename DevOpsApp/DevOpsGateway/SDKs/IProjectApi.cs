@@ -22,5 +22,8 @@ namespace DevOpsGateway.SDKs
 
         [Delete("/Projects/Delete/{id}")]
         Task DesactivateProjectAsync(Guid id);
+
+        [Get("/Projects/Stats/")]
+        Task<ProjectStats> CountProjectsAsync();
     }
 }

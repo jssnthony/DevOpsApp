@@ -1,4 +1,5 @@
-﻿using Models.Projects;
+﻿using Models.Inventory;
+using Models.Projects;
 using Models.ProjectsTasks;
 using System;
 using System.Collections.Generic;
@@ -52,5 +53,26 @@ namespace DevOpsAppManager.Mappers
             }
             return result;
          }
+
+        public static InventoryDto Parse(InventoryBaseModel model)
+        {
+            return new InventoryDto()
+            {
+                InventoryId = model.InventoryId,
+                InventoryCategory = model.InventoryCategory,
+                InventoryCategoryDetails = model.InventoryCategoryDetails,
+                Quantity = model.Quantity
+            };
+        }
+
+        public static IEnumerable<InventoryDto> Parse(IEnumerable<InventoryBaseModel> models)
+        {
+            var result = new List<InventoryDto>();
+            foreach (var model in models)
+            {
+                result.Add(Parse(model));
+            }
+            return result;
+        }
     }
 }

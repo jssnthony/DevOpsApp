@@ -4,8 +4,8 @@ using System.Text;
 
 namespace Models.Inventory
 {
-    public enum EnumInventoryType
+    public enum EnumInventoryCategory
     {
-        TCG = 1
+        TCG = 1,
     }
 }

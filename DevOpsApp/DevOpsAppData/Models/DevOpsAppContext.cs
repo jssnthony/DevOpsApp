@@ -1,4 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
+using Pomelo.EntityFrameworkCore.MySql.Scaffolding.Internal;
 
 namespace DevOpsAppData.Models;
 
@@ -13,17 +16,59 @@ public partial class DevOpsAppContext : DbContext
     {
     }
 
+    public virtual DbSet<Inventory> Inventories { get; set; }
+
+    public virtual DbSet<InventoryCategory> InventoryCategories { get; set; }
+
     public virtual DbSet<Project> Projects { get; set; }
 
     public virtual DbSet<ProjectsTask> ProjectsTasks { get; set; }
 
     public virtual DbSet<ViewProjectsTask> ViewProjectsTasks { get; set; }
 
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
+        => optionsBuilder.UseMySql("server=127.0.0.1;database=devopsapp;user=jss;password=n0m3l0s3;port=3306", Microsoft.EntityFrameworkCore.ServerVersion.Parse("9.6.0-mysql"));
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder
             .UseCollation("utf8mb4_0900_ai_ci")
             .HasCharSet("utf8mb4");
+
+        modelBuilder.Entity<Inventory>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PRIMARY");
+
+            entity.ToTable("inventory");
+
+            entity.HasIndex(e => e.CategoryId, "CATEGORY_ID");
+
+            entity.HasIndex(e => e.UniqueKey, "UNIQUE_KEY").IsUnique();
+
+            entity.Property(e => e.Id).HasColumnName("ID");
+            entity.Property(e => e.CategoryId).HasColumnName("CATEGORY_ID");
+            entity.Property(e => e.Quantity).HasColumnName("QUANTITY");
+            entity.Property(e => e.UniqueKey).HasColumnName("UNIQUE_KEY");
+
+            entity.HasOne(d => d.Category).WithMany(p => p.Inventories)
+                .HasForeignKey(d => d.CategoryId)
+                .HasConstraintName("inventory_ibfk_1");
+        });
+
+        modelBuilder.Entity<InventoryCategory>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PRIMARY");
+
+            entity.ToTable("inventory_category");
+
+            entity.HasIndex(e => e.CategoryName, "CATEGORY_NAME").IsUnique();
+
+            entity.Property(e => e.Id).HasColumnName("ID");
+            entity.Property(e => e.CategoryName)
+                .HasMaxLength(50)
+                .HasColumnName("CATEGORY_NAME");
+        });
 
         modelBuilder.Entity<Project>(entity =>
         {

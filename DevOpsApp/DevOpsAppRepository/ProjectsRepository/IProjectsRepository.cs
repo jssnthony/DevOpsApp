@@ -10,5 +10,6 @@ namespace DevOpsAppRepository.ProjectsRepository
         public Task<IEnumerable<ProjectBaseModel>> GetAllAsync();
         public Task<Guid?> InsertAsync(ProjectDtoToInsert toInsert);
         Task<ProjectBaseModel?> UpsetAsync(ProjectDtoToUpdate toUpdate);
+        Task<int> CountProjectsAsync();
     }
 }

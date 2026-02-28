@@ -15,16 +15,31 @@ namespace DevOpsGateway.Controllers
             _projectApi = projectApi;
         }
 
+
+        [HttpGet("stats", Name = "stats")]
+        public async Task<IActionResult> StatsProjects()
+        {
+            try
+            {
+                return Ok(await _projectApi.CountProjectsAsync());
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error counting projects: {ex.Message}");
+            }
+        }
+
         [HttpGet(Name = "GetAll")]
         public async Task<IActionResult> GetAll()
         {
-            try {
+            try
+            {
                 return Ok(await _projectApi.GetAllProjectsAsync());
             }
-            catch (Exception ex) {
-                return StatusCode(500, $"Error retreiving all projects: {ex.Message}");
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error retrieving all projects: {ex.Message}");
             }
-
         }
 
         [HttpGet("{id}", Name = "Get")]

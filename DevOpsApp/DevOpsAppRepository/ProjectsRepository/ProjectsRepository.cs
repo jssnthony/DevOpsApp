@@ -24,6 +24,12 @@ namespace DevOpsAppRepository.ProjectsRepository
             return RepositoryMappers.Parse(record);
         }
 
+        public async Task<int> CountProjectsAsync()
+        {
+            var records = await _context.Projects.Where(x => !x.IsArchive && x.IsActive).CountAsync();
+            return records;
+        }
+
         public async Task<ProjectBaseModel?> DisableRecordAsync(Guid id)
         {
             var record = await _context.Projects.FirstOrDefaultAsync(p => p.ProjectId == id);

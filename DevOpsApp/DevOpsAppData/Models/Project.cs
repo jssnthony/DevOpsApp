@@ -1,4 +1,7 @@
-﻿namespace DevOpsAppData.Models;
+﻿using System;
+using System.Collections.Generic;
+
+namespace DevOpsAppData.Models;
 
 public partial class Project
 {
