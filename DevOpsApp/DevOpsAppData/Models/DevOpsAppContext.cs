@@ -40,7 +40,7 @@ public partial class DevOpsAppContext : DbContext
         {
             entity.HasKey(e => e.Id).HasName("PRIMARY");
 
-            entity.ToTable("inventory");
+            entity.ToTable("INVENTORY");
 
             entity.HasIndex(e => e.CategoryId, "CATEGORY_ID");
 
@@ -60,7 +60,7 @@ public partial class DevOpsAppContext : DbContext
         {
             entity.HasKey(e => e.Id).HasName("PRIMARY");
 
-            entity.ToTable("inventory_category");
+            entity.ToTable("INVENTORY_CATEGORY");
 
             entity.HasIndex(e => e.CategoryName, "CATEGORY_NAME").IsUnique();
 
@@ -74,7 +74,7 @@ public partial class DevOpsAppContext : DbContext
         {
             entity.HasKey(e => e.LabelIndex).HasName("PRIMARY");
 
-            entity.ToTable("labels");
+            entity.ToTable("LABELS");
 
             entity.HasIndex(e => e.LabelName, "LABEL_NAME").IsUnique();
 
@@ -103,7 +103,7 @@ public partial class DevOpsAppContext : DbContext
         {
             entity.HasKey(e => e.ProjectIndex).HasName("PRIMARY");
 
-            entity.ToTable("projects");
+            entity.ToTable("PROJECTS");
 
             entity.HasIndex(e => e.ProjectId, "PROJECT_ID").IsUnique();
 
@@ -153,7 +153,7 @@ public partial class DevOpsAppContext : DbContext
         {
             entity.HasKey(e => e.TaskIndex).HasName("PRIMARY");
 
-            entity.ToTable("projects_tasks");
+            entity.ToTable("PROJECTS_TASKS");
 
             entity.HasIndex(e => e.ProjectIndex, "FK_PROJECTS_TASKS_PROJECTS");
 
@@ -203,7 +203,7 @@ public partial class DevOpsAppContext : DbContext
         {
             entity
                 .HasNoKey()
-                .ToView("view_inventory");
+                .ToView("VIEW_INVENTORY");
 
             entity.Property(e => e.CategoryName)
                 .HasMaxLength(50)
@@ -216,7 +216,7 @@ public partial class DevOpsAppContext : DbContext
         {
             entity
                 .HasNoKey()
-                .ToView("view_tasks_projects");
+                .ToView("VIEW_TASKS_PROJECTS");
 
             entity.Property(e => e.ProjectCreatedAt)
                 .HasDefaultValueSql("CURRENT_TIMESTAMP")
