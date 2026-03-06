@@ -405,3 +405,4 @@ FodyWeavers.xsd
 /DevOpsApp/DevOpsController/appsettings.json
 /DevOpsApp/DevOpsGateway/appsettings.json
 /DevOpsApp/DevOpsAppUI/config.json
+/DevOpsApp/DevOpsAppData/DBStructure/updatescript.txt
