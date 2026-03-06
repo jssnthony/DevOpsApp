@@ -2,8 +2,8 @@
 -- DATABASE
 -- =========================================
 
-CREATE DATABASE IF NOT EXISTS DEVOPSAPP;
-USE DEVOPSAPP;
+CREATE DATABASE IF NOT EXISTS devopsapp;
+USE devopsapp;
 
 
 -- =========================================
