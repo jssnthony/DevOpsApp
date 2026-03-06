@@ -19,14 +19,14 @@ namespace DevOpsAppRepository.ProjectsRepository
             var record = await _context.Projects.FirstOrDefaultAsync(p => p.ProjectId == id);
             if (record == null)
                 return null;
-            record.IsArchive = true;
+            record.ProjectIsArchive = true;
             await _context.SaveChangesAsync();
             return RepositoryMappers.Parse(record);
         }
 
         public async Task<int> CountProjectsAsync()
         {
-            var records = await _context.Projects.Where(x => !x.IsArchive && x.IsActive).CountAsync();
+            var records = await _context.Projects.Where(x => !x.ProjectIsArchive && x.ProjectIsActive).CountAsync();
             return records;
         }
 
@@ -35,20 +35,20 @@ namespace DevOpsAppRepository.ProjectsRepository
             var record = await _context.Projects.FirstOrDefaultAsync(p => p.ProjectId == id);
             if (record == null)
                 return null;
-            record.IsActive = false;
+            record.ProjectIsActive = false;
             await _context.SaveChangesAsync();
             return RepositoryMappers.Parse(record);
         }
 
         public async Task<IEnumerable<ProjectBaseModel>> GetAllAsync()
         {
-            return await _context.Projects.Where(x => !x.IsArchive && x.IsActive)
+            return await _context.Projects.Where(x => !x.ProjectIsArchive && x.ProjectIsActive)
                 .Select(x => RepositoryMappers.Parse(x)).ToListAsync();
         }
 
         public async Task<ProjectBaseModel?> GetAsync(Guid id)
         {
-            var record = await _context.Projects.Where(x => !x.IsArchive && x.IsActive)
+            var record = await _context.Projects.Where(x => !x.ProjectIsArchive && x.ProjectIsActive)
                 .FirstOrDefaultAsync(_ => _.ProjectId == id);
             if (record == null) return null;
             return RepositoryMappers.Parse(record);
@@ -59,12 +59,12 @@ namespace DevOpsAppRepository.ProjectsRepository
             var id = Guid.NewGuid();
             await _context.Projects.AddAsync(new Project()
             {
-                ProjectTitle = toInsert.Description,
+                ProjectTitle = toInsert.Title,
                 ProjectId = id,
-                ProjectDescription = toInsert.Title,
+                ProjectDescription = toInsert.Description,
                 ProjectRepository = toInsert.Repository,
-                IsActive = true,
-                IsArchive = false
+                ProjectIsActive = true,
+                ProjectIsArchive = false
             });
 
             await _context.SaveChangesAsync();

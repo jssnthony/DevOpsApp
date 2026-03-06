@@ -14,6 +14,13 @@ namespace DevOpsGateway.Controllers
             _projectApi = projectApi;
         }
 
+        [HttpGet()]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<IActionResult> GetAllTasks()
+        {
+            return Ok(await _projectApi.GetAllTasksAsync());
+        }
+
         [HttpGet("{taskId}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> Get(Guid taskId)

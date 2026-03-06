@@ -13,16 +13,16 @@ namespace DevOpsAppRepository.Mappers
                 Title = project.ProjectTitle,
                 Description = project.ProjectDescription,
                 Repository = project.ProjectRepository,
-                IsActive = project.IsActive,
-                IsArchive = project.IsArchive
+                IsActive = project.ProjectIsActive,
+                IsArchive = project.ProjectIsArchive
             };
         }
 
-        public static ViewProjectTaskBaseModel Parse(DevOpsAppData.Models.ViewProjectsTask task)
+        public static ViewTaskProjectBaseModel Parse(DevOpsAppData.Models.ViewTasksProject task)
         {
-            return new ViewProjectTaskBaseModel()
+            return new ViewTaskProjectBaseModel()
             {
-                IsDone = task.IsDone,
+                ProgressStatus = (EnumProjectTasksStatus) task.TaskProgressStatus,
                 ProjectDescription = task.ProjectDescription,
                 ProjectId = task.ProjectId,
                 ProjectRepository = task.ProjectRepository,

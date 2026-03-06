@@ -15,7 +15,19 @@ public partial class ProjectsTask
 
     public string TaskDescription { get; set; } = null!;
 
-    public bool IsDone { get; set; }
+    public int TaskProgressStatus { get; set; }
+
+    public int TaskPriority { get; set; }
+
+    public string? TaskLabels { get; set; }
+
+    public DateTime TaskCreatedAt { get; set; }
+
+    public DateTime TaskUpdatedAt { get; set; }
+
+    public string TaskCreatedBy { get; set; } = null!;
+
+    public string TaskUpdatedBy { get; set; } = null!;
 
     public virtual Project ProjectIndexNavigation { get; set; } = null!;
 }

@@ -8,19 +8,21 @@ namespace DevOpsGateway.SDKs
     public interface IProjectsTasksApi
     {
         [Get("/ProjectsTasks/{taskId}")]
-        Task<ViewProjectTaskDto> GetProjectsTaskAsync(Guid taskId);
+        Task<ViewTaskProjectDto> GetProjectsTaskAsync(Guid taskId);
 
         [Get("/ProjectsTasks/GetAll/{projectId}")]
-        Task<IEnumerable<ViewProjectTaskDto>> GetAllProjectsTasksAsync(Guid projectId);
+        Task<IEnumerable<ViewTaskProjectDto>> GetAllProjectsTasksAsync(Guid projectId);
 
         [Post("/ProjectsTasks/{projectId}")]
-        Task<ViewProjectTaskDto> InsertProjectTaskAsync(Guid projectId, ProjectTaskToInsert toInsert);
+        Task<ViewTaskProjectDto> InsertProjectTaskAsync(Guid projectId, ProjectTaskToInsert toInsert);
 
         [Put("/ProjectsTasks/Update/{taskId}")]
-        Task<ViewProjectTaskDto?> UpdateProjectTaskAsync(Guid taskId, ProjectTaskToUpdate toUpdate);
+        Task<ViewTaskProjectDto?> UpdateProjectTaskAsync(Guid taskId, ProjectTaskToUpdate toUpdate);
 
         [Put("/ProjectsTasks/AlterStatus/{taskId}")]
         Task<bool> AlterProjectTaskStatusAsync(Guid taskId);
 
+        [Get("/ProjectsTasks/")]
+        Task<IEnumerable<ViewTaskProjectDto>> GetAllTasksAsync();
     }
 }

@@ -4,14 +4,16 @@ namespace DevOpsAppManager.Tasks
 {
     public interface IProjectsTasksManager
     {
-        public Task<ViewProjectTaskDto?> GetProjectsTaskAsync(Guid TaskId);
+        public Task<ViewTaskProjectDto?> GetProjectsTaskAsync(Guid TaskId);
 
-        public Task<IEnumerable<ViewProjectTaskDto>> GetAllProjectsTasksAsync(Guid ProjectId);
+        public Task<IEnumerable<ViewTaskProjectDto>> GetAllProjectsTasksAsync(Guid ProjectId);
 
-        public Task<ViewProjectTaskDto?> InsertProjectTaskAsync(Guid ProjectId, ProjectTaskToInsert ProjectTask);
+        public Task<ViewTaskProjectDto?> InsertProjectTaskAsync(Guid ProjectId, ProjectTaskToInsert ProjectTask);
 
-        public Task<ViewProjectTaskDto?> UpdateProjectTaskAsync(Guid TaskId, ProjectTaskToUpdate ProjectTask);
+        public Task<ViewTaskProjectDto?> UpdateProjectTaskAsync(Guid TaskId, ProjectTaskToUpdate ProjectTask);
         
-        public Task<bool> AlterProjectTaskStatusAsync(Guid TaskId);
+        public Task<EnumProjectTasksStatus> DeleteProjectTaskStatusAsync(Guid TaskId);
+        
+        Task<IEnumerable<ViewTaskProjectDto>> GetAllAsync();
     }
 }

@@ -30,11 +30,11 @@ namespace DevOpsAppManager.Mappers
             return result;
         }
 
-        public static ViewProjectTaskDto Parse(ViewProjectTaskBaseModel model)
+        public static ViewTaskProjectDto Parse(ViewTaskProjectBaseModel model)
         {
-            return new ViewProjectTaskDto()
+            return new ViewTaskProjectDto()
             {
-                IsDone = model.IsDone,
+                ProgressStatus = model.ProgressStatus,
                 ProjectDescription = model.ProjectDescription,
                 ProjectId = model.ProjectId,
                 ProjectRepository = model.ProjectRepository,
@@ -44,9 +44,9 @@ namespace DevOpsAppManager.Mappers
                 TaskTitle = model.TaskTitle
             };
         }
-         public static IEnumerable<ViewProjectTaskDto> Parse(IEnumerable<ViewProjectTaskBaseModel> models)
+         public static IEnumerable<ViewTaskProjectDto> Parse(IEnumerable<ViewTaskProjectBaseModel> models)
         {
-            var result = new List<ViewProjectTaskDto>();
+            var result = new List<ViewTaskProjectDto>();
             foreach (var model in models)
             {
                 result.Add(Parse(model));

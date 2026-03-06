@@ -2,7 +2,7 @@
 
 namespace Models.ProjectsTasks
 {
-    public class ViewProjectTaskBaseModel
+    public class ViewTaskProjectBaseModel
     {
         public Guid TaskId { get; set; }
 
@@ -10,7 +10,7 @@ namespace Models.ProjectsTasks
 
         public string TaskDescription { get; set; } = null!;
 
-        public bool IsDone { get; set; }
+        public EnumProjectTasksStatus ProgressStatus { get; set; }
 
         public Guid ProjectId { get; set; }
 

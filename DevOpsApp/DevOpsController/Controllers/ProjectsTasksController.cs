@@ -14,6 +14,14 @@ namespace DevOpsController.Controllers
             _manager = manager;
         }
 
+        [HttpGet()]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<IActionResult> GetAll()
+        {
+            return Ok(await _manager.GetAllAsync());
+
+        }
+
         [HttpGet("{taskId}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> Get(Guid taskId) {
@@ -46,7 +54,7 @@ namespace DevOpsController.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> AlterStatus(Guid taskId)
         {
-            return Ok(await _manager.AlterProjectTaskStatusAsync(taskId));
+            return Ok(await _manager.DeleteProjectTaskStatusAsync(taskId));
         }
     }
 }

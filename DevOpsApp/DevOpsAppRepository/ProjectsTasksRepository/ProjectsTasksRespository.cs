@@ -12,33 +12,38 @@ namespace DevOpsAppRepository.ProjectsTasksRepository
             _context = context;
         }
 
-        public async Task<bool> AlterProjectTaskStatusAsync(Guid TaskId)
+        public async Task<EnumProjectTasksStatus> DeleteProjectTaskStatusAsync(Guid TaskId)
         {
             var task = await _context.ProjectsTasks.FirstOrDefaultAsync(x => x.TaskId == TaskId);
-            if (task == null)
-                return false;
-            task.IsDone = !task.IsDone;
+            task.TaskProgressStatus = (int)EnumProjectTasksStatus.IsDeleted;
             await _context.SaveChangesAsync();
-            return task.IsDone;
+            return (EnumProjectTasksStatus)task.TaskProgressStatus;
         }
 
-        public async Task<IEnumerable<ViewProjectTaskBaseModel>> GetAllProjectsTasksAsync(Guid ProjectId)
+        public async Task<IEnumerable<ViewTaskProjectBaseModel>> GetAllAsync()
         {
-            return await _context.ViewProjectsTasks.Where(x => x.ProjectId == ProjectId)
+            return await _context.ViewTasksProjects
+               .Select(x => RepositoryMappers.Parse(x))
+               .ToListAsync();
+        }
+
+        public async Task<IEnumerable<ViewTaskProjectBaseModel>> GetAllProjectsTasksAsync(Guid ProjectId)
+        {
+            return await _context.ViewTasksProjects.Where(x => x.ProjectId == ProjectId)
                 .Select(x => RepositoryMappers.Parse(x))
                 .ToListAsync();
         }
 
-        public async Task<ViewProjectTaskBaseModel?> GetProjectsTaskAsync(Guid TaskId)
+        public async Task<ViewTaskProjectBaseModel?> GetProjectsTaskAsync(Guid TaskId)
         {
-            var record = await _context.ViewProjectsTasks
+            var record = await _context.ViewTasksProjects
                 .FirstOrDefaultAsync(x=> x.TaskId == TaskId);
             if (record == null) return null;
             var result = RepositoryMappers.Parse(record);
             return result;
         }
 
-        public async Task<ViewProjectTaskBaseModel?> InsertProjectTaskAsync(Guid ProjectId, ProjectTaskToInsert toInsert)
+        public async Task<ViewTaskProjectBaseModel?> InsertProjectTaskAsync(Guid ProjectId, ProjectTaskToInsert toInsert)
         {
             var parentProjectRecord = await _context.Projects.FirstOrDefaultAsync(x=> x.ProjectId == ProjectId);
             if (parentProjectRecord == null) return null;
@@ -49,15 +54,15 @@ namespace DevOpsAppRepository.ProjectsTasksRepository
             {
                 TaskDescription = toInsert.Description,
                 TaskId = newId,
-                IsDone = false,
-                TaskTitle = toInsert.Title,
+                TaskProgressStatus = (int) EnumProjectTasksStatus.Idea,
+                TaskTitle = toInsert.Title
             });
             await _context.SaveChangesAsync();
 
             return await GetProjectsTaskAsync(newId);
         }
 
-        public async Task<ViewProjectTaskBaseModel?> UpdateProjectTaskAsync(Guid TaskId, ProjectTaskToUpdate toUpdate)
+        public async Task<ViewTaskProjectBaseModel?> UpdateProjectTaskAsync(Guid TaskId, ProjectTaskToUpdate toUpdate)
         {
             var record = await _context.ProjectsTasks
                 .Include(x => x.ProjectIndex)
